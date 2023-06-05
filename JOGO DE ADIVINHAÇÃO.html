@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Amor Infinito</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #nao-aperte {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: red;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <button id="nao-aperte">NÃO APERTE</button>
+  
+  <script>
+    const naoAperteButton = document.getElementById('nao-aperte');
+    
+    let counter = 0;
+    
+    naoAperteButton.addEventListener('click', () => {
+      counter++;
+      
+      if (counter === 3) {
+        displayLoveMessages();
+      }
+    });
+    
+    function displayLoveMessages() {
+      const phrases = [
+        'Eu te amo',
+        'Pe preto',
+        'Te amo best',
+        'Saudades de voce',
+        'Voce e incrivel preta'
+      ];
+      
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      setInterval(() => {
+        const loveMessage = document.createElement('div');
+        const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+        const formattedPhrase = randomPhrase.replace(/amo/gi, '<span style="color: red;">AMO</span>');
+        
+        loveMessage.innerHTML = formattedPhrase;
+        
+        loveMessage.style.position = 'absolute';
+        loveMessage.style.left = `${getRandomNumber(0, windowWidth - 200)}px`;
+        loveMessage.style.top = `${getRandomNumber(0, windowHeight - 50)}px`;
+        loveMessage.style.fontSize = `${getRandomNumber(18, 48)}px`;
+        
+        document.body.appendChild(loveMessage);
+      }, 100);
+    }
+    
+    function getRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  </script>
+</body>
+</html>
